@@ -1,0 +1,13 @@
+sudo: required
+
+services:
+- docker
+
+script:
+- docker build -t alanpeng/jwt .
+
+deploy:
+  provider: script
+  script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && docker push alanpeng/jwt
+  on:
+    all_branches: true
